@@ -51,11 +51,10 @@
 ;;Type: [Number * Number -> LzlList<Pair<Number,Number>>
 ;;Pre-condition: init =/= 0
 ;;Tests: (take (sqrt-lzl 2 1) 3) →  '((1 . 1) (3/2 . 1/4) (17/12 . 1/144)) 
-(define sqrt-lzl 
+(define sqrt-lzl
   (lambda (x init)
-   @TODO
-  )
-)  
+    (cons-lzl (cons init (abs (- (square init) x)))
+              (lambda () (sqrt-lzl x (improve init x))))))
 
 ;;Signature: find-first(lzlst, p)
 ;;Purpose: Return the first item in the given lazy list which satisfies the given predicate. If no such item exists return 'fail.
@@ -65,9 +64,9 @@
 
 (define find-first
   (lambda (lz-lst p)
-   @TODO
-  )
-)
+    (cond ((empty-lzl? lz-lst) 'fail)
+          ((p (head lz-lst)) (head lz-lst))
+          (else (find-first (tail lz-lst) p)))))
 
 ;;Signature: sqrt2(x,init,epsilon)
 ;;Purpose: return approximation of the square root of the given number x, according to Newton method, starting from init guess with epsilon threshold.  The procedure uses sqrt-lzl and find-first procedures.
@@ -76,7 +75,7 @@
 ;;Tests: (sqrt2 2 1 0.0001) → 1 169/408
 (define sqrt2
   (lambda (x init epsilon)
-   @TODO
+   'TODO
   )
 )
 
@@ -89,7 +88,7 @@
 ;;Tests: (get-value '((a . 3) (b . 4)) 'b) --> 4,(get-value '((a . 3) (b . 4)) 'c) --> 'fail
 (define get-value
   (lambda (assoc-list key)
-   @TODO
+   'TODO
   )
 )
 
@@ -99,7 +98,7 @@
 ;;Tests: > (get-value$ '((a . 3) (b . 4)) 'b (lambda(x) (* x x )) (lambda()#f)) --> 16, (get-value$ '((a . 3) (b . 4)) 'c (lambda(x) (* x x)) (lambda()#f)) --> #f
 (define get-value$
   (lambda (assoc-list key success fail)
-   @TODO
+   'TODO
   )
 )
 
@@ -114,13 +113,13 @@
 
 (define collect-all-values-1
  (lambda (lists key)
-  @TODO
+  'TODO
  )
 )
 
 (define collect-all-values-2
  (lambda (lists key)
-  @TODO
+  'TODO
  )
 )
    
