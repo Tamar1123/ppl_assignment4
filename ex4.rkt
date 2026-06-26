@@ -118,15 +118,20 @@
 ;;(collect-all-values (list l1 l2) 'k)--> '()
 
 (define collect-all-values-1
- (lambda (lists key)
-  'TODO
- )
-)
+  (lambda (lists key)
+    (if (empty? lists)
+        '()
+        (let ((val (get-value (car lists) key)))
+          (if (eq? val 'fail)
+              (collect-all-values-1 (cdr lists) key)
+              (cons val (collect-all-values-1 (cdr lists) key)))))))
 
 (define collect-all-values-2
- (lambda (lists key)
-  'TODO
- )
-)
+  (lambda (lists key)
+    (if (empty? lists)
+        '()
+        (get-value$ (car lists) key
+                    (lambda (val) (cons val (collect-all-values-2 (cdr lists) key)))
+                    (lambda () (collect-all-values-2 (cdr lists) key))))))
    
    
