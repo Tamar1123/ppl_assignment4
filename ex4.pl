@@ -12,11 +12,16 @@ maximum_printing_depth(100).
    maximum_printing_depth(MPD),
    set_prolog_flag(toplevel_print_options, [max_depth(MPD)|B]).
 
+
+
 % Signature: sub_list(Sublist, List)/2
 % Purpose: All elements in Sublist appear in List in the same order.
 % Precondition: List is fully instantiated (queries do not include variables in their second argument).
 
-
+% not so sure about this implementation, i will test this later
+sub_list([], List)
+sub_list([X | X1], [X | X2]) :- sub_list(X1, X2)
+sub_list(X1, [Y | X2]) :- sub_list(X1, X2)
 
 
 
